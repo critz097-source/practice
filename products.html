@@ -18,12 +18,11 @@ header{position:fixed;top:0;left:0;width:100%;padding:14px 16px;padding-top:max(
 
 .products{padding:78px 10px 30px;display:grid;grid-template-columns:repeat(2, 1fr);gap:10px;max-width:1400px;margin:0 auto}
 .product-card{background:#111;border:1px solid rgba(225,6,0,0.18);border-radius:14px;overflow:hidden;text-align:center}
-.product-card:active{transform:scale(0.97)}
 .product-card img{width:100%;height:170px;object-fit:contain;background:#fff;cursor:pointer;padding:8px}
 .info{padding:10px 8px}
-.info h3{text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px;font-size:11px;min-height:26px;display:flex;align-items:center;justify-content:center}
+.info h3{text-transform:uppercase;font-size:11px;min-height:26px;display:flex;align-items:center;justify-content:center}
 .price{color:var(--red);font-size:14px;font-weight:900;margin-bottom:8px}
-.view-btn{background:var(--red);color:var(--white);border:none;padding:11px;width:100%;font-weight:900;cursor:pointer;border-radius:8px;text-transform:uppercase;font-size:11px}
+.view-btn{background:var(--red);color:#fff;border:none;padding:11px;width:100%;font-weight:900;border-radius:8px;font-size:11px}
 
 .drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);z-index:999;opacity:0;visibility:hidden;transition:0.3s}
 .drawer-overlay.active{opacity:1;visibility:visible}
@@ -33,44 +32,36 @@ header{position:fixed;top:0;left:0;width:100%;padding:14px 16px;padding-top:max(
 .drawer-header h3{font-size:11px;letter-spacing:2px;text-transform:uppercase;opacity:0.7}
 .close-btn{font-size:28px;background:rgba(255,255,255,0.08);border:none;color:#fff;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center}
 
-.drawer-body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}
-.drawer-images{display:flex;gap:0;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.drawer-body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:20px}
+.drawer-images{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
 .drawer-images::-webkit-scrollbar{display:none}
 .drawer-images img{width:88%;min-width:88%;height:340px;object-fit:contain;background:#fff;border-right:1px solid #222;scroll-snap-align:center;flex-shrink:0}
 
 .drawer-info{padding:16px}
-.drawer-info h2{font-size:20px;text-transform:uppercase;margin-bottom:6px;font-weight:900;line-height:1}
+.drawer-info h2{font-size:20px;text-transform:uppercase;margin-bottom:6px;font-weight:900}
 #drawer-price{font-size:18px;color:var(--red);font-weight:900;margin-bottom:20px}
 .option-group{margin-bottom:18px}
 .option-group h4{font-size:10px;letter-spacing:2px;margin-bottom:10px;color:#888;text-transform:uppercase}
 .sizes{display:flex;gap:8px;flex-wrap:wrap}
-.size-btn{padding:12px 16px;border:1px solid #333;background:transparent;color:#fff;cursor:pointer;font-size:13px;font-weight:800;min-width:48px;border-radius:8px}
+.size-btn{padding:12px 16px;border:1px solid #333;background:transparent;color:#fff;font-size:13px;font-weight:800;min-width:48px;border-radius:8px}
 .size-btn.active{background:#fff;color:#000;border-color:#fff}
-.qty-row{display:flex;align-items:center;gap:12px;margin:16px 0}
+.qty-row{display:flex;align-items:center;margin:16px 0}
 .qty-box{display:flex;border:1px solid #333;border-radius:8px;overflow:hidden}
 .qty-btn{background:#1a1a1a;color:#fff;border:none;padding:12px 16px;font-size:18px;min-width:48px}
 .qty-input{width:50px;text-align:center;background:transparent;border:none;color:#fff;font-size:15px;font-weight:700}
 
-/* BUTTONS - SMALLER WITH SPACE - ONLY VISIBLE WHEN DRAWER OPEN */
-.drawer.btn-group{display:none}
-.drawer.active.btn-group{
+/* BUTTONS MOVED UP - INSIDE INFO, NOT FIXED BOTTOM */
+.btn-group{
   display:flex;
   flex-direction:column;
-  gap:12px;
-  padding:12px 16px;
-  padding-bottom:max(18px, env(safe-area-inset-bottom));
-  background:rgba(10,10,10,0.98);
-  backdrop-filter:blur(20px);
-  -webkit-backdrop-filter:blur(20px);
-  border-top:1px solid #222;
-  flex-shrink:0;
+  gap:14px; /* space between add to cart and buy now */
+  margin-top:24px; /* moved up close to qty */
 }
 .btn{
-  padding:13px;
+  padding:14px;
   width:100%;
   border:none;
   font-weight:900;
-  cursor:pointer;
   text-transform:uppercase;
   letter-spacing:1px;
   border-radius:10px;
@@ -80,14 +71,13 @@ header{position:fixed;top:0;left:0;width:100%;padding:14px 16px;padding-top:max(
 .btn-buy{background:var(--red);color:#fff}
 
 @media(min-width:768px){
-  header{padding:22px 40px}.logo{font-size:24px}.nav a{font-size:12px;margin-left:24px}
 .products{grid-template-columns:repeat(3,1fr);gap:24px;padding:110px 40px 80px}
 .product-card img{height:320px}
-.info h3{font-size:14px;min-height:auto}.price{font-size:18px}
 .drawer{max-width:860px;border-left:2px solid var(--red)}
 .drawer-body{display:grid;grid-template-columns:1fr 1fr}
 .drawer-images{flex-direction:column;overflow:visible}
 .drawer-images img{width:100%;min-width:100%;height:420px;border-right:0;border-bottom:1px solid #222}
+.btn-group{margin-top:30px}
 }
 </style>
 </head>
@@ -105,36 +95,21 @@ header{position:fixed;top:0;left:0;width:100%;padding:14px 16px;padding-top:max(
 <section class="products">
   <div class="product-card">
     <img src="longsleeve.png" alt="LONG SLEEVE TEE" onclick="openDrawer('longsleeve')">
-    <div class="info">
-      <h3>LONG SLEEVE TEE</h3>
-      <div class="price">₦35,000</div>
-      <button class="view-btn" onclick="openDrawer('longsleeve')">VIEW</button>
-    </div>
+    <div class="info"><h3>LONG SLEEVE TEE</h3><div class="price">₦35,000</div><button class="view-btn" onclick="openDrawer('longsleeve')">VIEW</button></div>
   </div>
   <div class="product-card">
     <img src="hoodie.png" alt="CRITZ HOODIE" onclick="openDrawer('hoodie')">
-    <div class="info">
-      <h3>CRITZ HOODIE</h3>
-      <div class="price">₦40,000</div>
-      <button class="view-btn" onclick="openDrawer('hoodie')">VIEW</button>
-    </div>
+    <div class="info"><h3>CRITZ HOODIE</h3><div class="price">₦40,000</div><button class="view-btn" onclick="openDrawer('hoodie')">VIEW</button></div>
   </div>
   <div class="product-card">
     <img src="harmlesstee.png" alt="GRAPHIC SLEEVELESS TEE" onclick="openDrawer('sleeveless')">
-    <div class="info">
-      <h3>GRAPHIC SLEEVELESS TEE</h3>
-      <div class="price">₦25,000</div>
-      <button class="view-btn" onclick="openDrawer('sleeveless')">VIEW</button>
-    </div>
+    <div class="info"><h3>GRAPHIC SLEEVELESS TEE</h3><div class="price">₦25,000</div><button class="view-btn" onclick="openDrawer('sleeveless')">VIEW</button></div>
   </div>
 </section>
 
 <div class="drawer-overlay" id="overlay" onclick="closeDrawer()"></div>
 <div class="drawer" id="drawer">
-  <div class="drawer-header">
-    <h3>SELECT OPTIONS</h3>
-    <button class="close-btn" onclick="closeDrawer()">×</button>
-  </div>
+  <div class="drawer-header"><h3>SELECT OPTIONS</h3><button class="close-btn" onclick="closeDrawer()">×</button></div>
   <div class="drawer-body">
     <div class="drawer-images" id="drawer-images"></div>
     <div class="drawer-info">
@@ -151,11 +126,14 @@ header{position:fixed;top:0;left:0;width:100%;padding:14px 16px;padding-top:max(
           <button class="qty-btn" onclick="changeQty(1)">+</button>
         </div>
       </div>
+
+      <!-- MOVED UP HERE - RIGHT AFTER QTY -->
+      <div class="btn-group">
+        <button class="btn btn-cart" onclick="addToCartFromDrawer()">ADD TO CART</button>
+        <button class="btn btn-buy" onclick="buyNow()">BUY IT NOW</button>
+      </div>
+
     </div>
-  </div>
-  <div class="btn-group">
-    <button class="btn btn-cart" onclick="addToCartFromDrawer()">ADD TO CART</button>
-    <button class="btn btn-buy" onclick="buyNow()">BUY IT NOW</button>
   </div>
 </div>
 
@@ -180,34 +158,11 @@ function openDrawer(id){
   document.getElementById('overlay').classList.add('active');
   document.getElementById('drawer').classList.add('active');
 }
-function closeDrawer(){
-  document.body.classList.remove('no-scroll');
-  document.getElementById('overlay').classList.remove('active');
-  document.getElementById('drawer').classList.remove('active');
-}
-function selectSize(size,el){
-  selectedSize=size;
-  document.querySelectorAll('.size-btn').forEach(b=>b.classList.remove('active'));
-  el.classList.add('active');
-  document.getElementById('size-label').innerText=`SIZE: ${selectedSize}`;
-}
+function closeDrawer(){document.body.classList.remove('no-scroll');document.getElementById('overlay').classList.remove('active');document.getElementById('drawer').classList.remove('active');}
+function selectSize(size,el){selectedSize=size;document.querySelectorAll('.size-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');document.getElementById('size-label').innerText=`SIZE: ${selectedSize}`;}
 function changeQty(v){qty+=v;if(qty<1)qty=1;document.getElementById('qty').value=qty}
-function addToCartFromDrawer(){
-  let cart=JSON.parse(localStorage.getItem('stylevaultCart'))||[];
-  let key=currentProduct.title+'-'+selectedSize;
-  let ex=cart.find(i=>i.key===key);
-  if(ex)ex.qty+=qty; else cart.push({key:key,name:currentProduct.title,size:selectedSize,price:currentProduct.price,img:currentProduct.images[0],qty:qty});
-  localStorage.setItem('stylevaultCart',JSON.stringify(cart));
-  alert(`${currentProduct.title} - ${selectedSize} x${qty} added!`);closeDrawer();
-}
-function buyNow(){
-  let cart=JSON.parse(localStorage.getItem('stylevaultCart'))||[];
-  let key=currentProduct.title+'-'+selectedSize;
-  let ex=cart.find(i=>i.key===key);
-  if(ex)ex.qty+=qty; else cart.push({key:key,name:currentProduct.title,size:selectedSize,price:currentProduct.price,img:currentProduct.images[0],qty:qty});
-  localStorage.setItem('stylevaultCart',JSON.stringify(cart));
-  window.location.href='cart.html';
-}
+function addToCartFromDrawer(){let cart=JSON.parse(localStorage.getItem('stylevaultCart'))||[];let key=currentProduct.title+'-'+selectedSize;let ex=cart.find(i=>i.key===key);if(ex)ex.qty+=qty; else cart.push({key:key,name:currentProduct.title,size:selectedSize,price:currentProduct.price,img:currentProduct.images[0],qty:qty});localStorage.setItem('stylevaultCart',JSON.stringify(cart));alert(`${currentProduct.title} - ${selectedSize} x${qty} added!`);closeDrawer();}
+function buyNow(){let cart=JSON.parse(localStorage.getItem('stylevaultCart'))||[];let key=currentProduct.title+'-'+selectedSize;let ex=cart.find(i=>i.key===key);if(ex)ex.qty+=qty; else cart.push({key:key,name:currentProduct.title,size:selectedSize,price:currentProduct.price,img:currentProduct.images[0],qty:qty});localStorage.setItem('stylevaultCart',JSON.stringify(cart));window.location.href='cart.html';}
 </script>
 </body>
 </html>
