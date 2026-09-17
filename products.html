@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>PRODUCTS - CRITZ</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body,html{background:#000;color:#fff;font-family:'Anton',sans-serif;overflow-x:hidden}
+header{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:rgba(255,255,255,0.06);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.12)}
+.logo{font-size:18px;letter-spacing:3px}
+.location{font-size:6.5px;letter-spacing:1.5px;opacity:0.6;margin-top:2px}
+.nav-right{display:flex;align-items:center;gap:14px}
+.login-link{color:#fff;text-decoration:none;font-size:11px;font-family:'Inter',sans-serif;font-weight:600}
+.cart-wrap svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:1.8}
+
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px}
+@media(min-width:768px){.grid{grid-template-columns:repeat(3,1fr);padding:20px;gap:16px}}
+.card{background:rgba(255,255,255,0.07);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,0.12);border-radius:20px;overflow:hidden}
+.card img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
+.card-info{padding:10px 12px;background:rgba(255,255,255,0.03);backdrop-filter:blur(10px)}
+.card-name{font-size:11px;letter-spacing:1px}.card-price{font-family:'Inter';font-size:11px;opacity:0.7;margin-top:4px;font-weight:600}
+
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,0.4);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:20;opacity:0;pointer-events:none;transition:0.3s}
+.overlay.open{opacity:1;pointer-events:auto}
+.slide{
+  position:fixed;top:0;right:0;width:90%;max-width:380px;height:100dvh;z-index:21;
+  background:rgba(20,20,20,0.55);
+  backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);
+  border-left:1px solid rgba(255,255,255,0.15);
+  box-shadow:-20px 0 80px rgba(0,0,0,0.6), inset 1px 0 0 rgba(255,255,255,0.1);
+  transform:translateX(100%);transition:0.42s cubic-bezier(0.4,0,0.2,1);
+  display:flex;flex-direction:column;overflow:hidden
+}
+.slide.open{transform:translateX(0)}
+.slide-top{padding:14px 16px;display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.06);backdrop-filter:blur(15px);border-bottom:1px solid rgba(255,255,255,0.1)}
+.close{font-family:'Inter';font-size:20px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);color:#fff;width:32px;height:32px;border-radius:50%;backdrop-filter:blur(10px)}
+.main-img{width:100%;aspect-ratio:1/1;object-fit:cover;background:rgba(255,255,255,0.03)}
+.slide-body{padding:18px;overflow-y:auto;flex:1;background:rgba(255,255,255,0.02)}
+.slide-name{font-size:20px;letter-spacing:2px}.slide-price{font-family:'Inter';opacity:0.8;font-weight:600;margin-top:6px;font-size:13px}
+.variant-title{font-family:'Inter';font-size:10px;opacity:0.5;margin:18px 0 10px;letter-spacing:2px}
+.variants{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px}
+.variants img{width:74px;height:74px;border-radius:14px;object-fit:cover;border:1px solid rgba(255,255,255,0.12);flex-shrink:0;backdrop-filter:blur(10px)}
+.variants img.active{border-color:rgba(255,255,255,0.6);box-shadow:0 0 15px rgba(255,255,255,0.2)}
+.btns{display:flex;flex-direction:column;gap:10px;margin-top:24px}
+.btn-cart{width:100%;padding:14px;border-radius:50px;border:1px solid rgba(255,255,255,0.18);background:rgba(255,255,255,0.08);backdrop-filter:blur(15px);color:#fff;font-family:'Anton';letter-spacing:2.5px;font-size:11px}
+.btn-buy{width:100%;padding:14px;border-radius:50px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.18);backdrop-filter:blur(15px);color:#fff;font-family:'Anton';letter-spacing:2.5px;font-size:11px}
+</style>
+</head>
+<body>
+<header>
+  <div><div class="logo">CRITZ</div><div class="location">LAGOS NIGERIA - SHIPPING WORLDWIDE</div></div>
+  <div class="nav-right">
+    <a href="index.html" class="login-link">LOGIN</a>
+    <a href="cart.html" class="cart-wrap"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 01-8 0"/></svg></a>
+  </div>
+</header>
+
+<div class="grid" id="grid"></div>
+
+<div class="overlay" id="overlay"></div>
+<div class="slide" id="slide">
+  <div class="slide-top"><span style="font-size:11px;letter-spacing:2.5px">CRITZ</span><button class="close" onclick="closeSlide()">×</button></div>
+  <img id="mainImg" class="main-img" src="">
+  <div class="slide-body">
+    <div id="sName" class="slide-name"></div>
+    <div id="sPrice" class="slide-price"></div>
+    <div class="variant-title">COLOR VARIANTS</div>
+    <div class="variants" id="variants"></div>
+    <div class="btns">
+      <button class="btn-cart">ADD TO CART</button>
+      <button class="btn-buy">BUY NOW</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const products=[
+  {id:1,name:"CRTZ MOVEMENT TEE",price:"₦18,000",colors:[
+    {img:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600"},
+    {img:"https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=600"},
+    {img:"https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=600"}
+  ]},
+  {id:2,name:"CRTZ LOGO HOODIE",price:"₦32,000",colors:[
+    {img:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600"},
+    {img:"https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=600"}
+  ]}
+];
+const grid=document.getElementById('grid');
+products.forEach(p=>{grid.innerHTML+=`<div class="card" onclick="openSlide(${p.id})"><img src="${p.colors[0].img}"><div class="card-info"><div class="card-name">${p.name}</div><div class="card-price">${p.price}</div></div></div>`});
+const slide=document.getElementById('slide'), overlay=document.getElementById('overlay');
+function openSlide(id){
+  const p=products.find(x=>x.id===id);
+  document.getElementById('mainImg').src=p.colors[0].img;
+  document.getElementById('sName').innerText=p.name;
+  document.getElementById('sPrice').innerText=p.price;
+  document.getElementById('variants').innerHTML=p.colors.map((c,i)=>`<img src="${c.img}" class="${i==0?'active':''}" onclick="pickColor('${c.img}',this)">`).join('');
+  slide.classList.add('open'); overlay.classList.add('open');
+}
+function pickColor(img,el){document.getElementById('mainImg').src=img;document.querySelectorAll('.variants img').forEach(i=>i.classList.remove('active'));el.classList.add('active');}
+function closeSlide(){slide.classList.remove('open');overlay.classList.remove('open')}
+overlay.onclick=closeSlide;
+</script>
+</body>
+</html>
